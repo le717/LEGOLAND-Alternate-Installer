@@ -83,9 +83,9 @@ DiskSpaceMBLabel=At least 222 MB of free disk space is required.
 Source: "{code:GetSourceDrive}main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
 
 ; The Resource archives
-Source: "{code:GetSourceDrive}Graphics1.res"; DestDir: "{app}"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}Graphics2.res"; DestDir: "{app}"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}Legoland.res"; DestDir: "{app}"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}Graphics1.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}Graphics2.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}Legoland.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
 
 ; Uncompressed files
 Source: "{code:GetSourceDrive}Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion
@@ -131,6 +131,10 @@ Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\LEGOL
 ; From to to bottom: Extract the CAB, run game
 Filename: "{app}\i3comp.exe"; Parameters: """{app}\main.z"" ""{app}\*.*"" -d -i"; Flags: runascurrentuser
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
+
+[InstallDelete]
+; Uneeded file from main.z
+Type: files; Name: "Uninst.dll"
 
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files], 
