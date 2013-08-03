@@ -77,18 +77,27 @@ Name: "Full"; Description: "Full Installation (With Movies)"; Types: Full
 Name: "Minimal"; Description: "Minimal Installation (Without Movies)"; Types: Minimal
 
 [Files]
-; Pull the game files off a standard LEGOLAND disc.
-Source: "{code:GetSourceDrive}main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+; Pull the game files off a standard LEGOLAND disc.          
+; The deleteafterinstall flag removes the archive once the installation is complete
+Source: "{code:\GetSourceDrive}main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+
+; The Resource archives
+Source: "{code:\GetSourceDrive}Graphics1.res"; DestDir: "{app}"; Flags: external ignoreversion
+Source: "{code:\GetSourceDrive}Graphics2.res"; DestDir: "{app}"; Flags: external ignoreversion
+Source: "{code:\GetSourceDrive}Legoland.res"; DestDir: "{app}"; Flags: external ignoreversion
+
+; Uncompressed files
+Source: "{code:GetSourceDrive}Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion
 
 ; Pull the game files off a Boys Only Club disc.
-Source: "{code:GetSourceDrive}Lego Racers\data1.cab"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}Lego Racers\data1.hdr"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}Lego Racers\setupdir\0009\ReadMe.txt"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
+; Source: "{code:GetSourceDrive}Lego Racers\data1.cab"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+; Source: "{code:GetSourceDrive}Lego Racers\data1.hdr"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+; Source: "{code:GetSourceDrive}Lego Racers\setupdir\0009\ReadMe.txt"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
 
-; Manual and icon
-; Source: "Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+; Manual, icon and readme
+; Source: "{code:GetSourceDrive}Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
 Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i3comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
@@ -112,10 +121,6 @@ Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFla
 ; From to to bottom: Extract the CAB, run game
 Filename: "{app}\i3comp.exe"; Parameters: """{app}\main.z"" ""{app}\*.*"" -d -i"; Flags: runascurrentuser
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Components: Full
-
-[InstallDelete]
-; Delete the archive
-Type: files; Name: "main.z"
 
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files], this is needed to delete them.
