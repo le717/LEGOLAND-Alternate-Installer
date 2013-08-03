@@ -26,18 +26,18 @@ AppPublisher={#MyAppPublisher}
 AppCopyright=© 1999 {#MyAppPublisher}
 LicenseFile=license.txt
 ; Start menu/screen and Desktop shortcuts
-DefaultDirName={pf}\LEGO Media\Games\{#MyAppName}
+DefaultDirName={pf}\LEGO Media\Games\LEGOLAND
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 ; Installer Graphics
-SetupIconFile=Racers.ico
-WizardImageFile=Sidebar.bmp
+; SetupIconFile=Racers.ico
+WizardImageFile=Sidebar Image.bmp
 WizardSmallImageFile=InnoSetup LEGO Logo.bmp
 WizardImageStretch=True
 WizardImageBackColor=clBlack
 ; Location of the compiled Exe
 OutputDir=Here Lie The Exe
-OutputBaseFilename={#MyInstallerName} {#MyInstallerVersion}
+OutputBaseFilename=LEGO LEGOLAND Alternate Installer {#MyInstallerVersion}
 ; Uninstallation stuff
 UninstallFilesDir={app}
 UninstallDisplayIcon={app}\Racers.ico
@@ -87,8 +87,8 @@ Source: "{code:GetSourceDrive}Lego Racers\data1.hdr"; DestDir: "{app}"; Flags: e
 Source: "{code:GetSourceDrive}Lego Racers\setupdir\0009\ReadMe.txt"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
 
 ; Manual and icon
-Source: "Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
-Source: "Racers.ico"; DestDir: "{app}"; Flags: ignoreversion
+; Source: "Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+; Source: "Racers.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i3comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
