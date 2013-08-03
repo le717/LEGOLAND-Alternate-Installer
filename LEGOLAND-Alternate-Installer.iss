@@ -115,7 +115,17 @@ Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupD
 
 [Registry]
 ; Registry strings are always hard-coded (!No ISPP functions!) to ensure everything works properly.
+; Run as Admin string
 Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\LEGORacers.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
+
+; Required game strings
+Root: "HKLM"; Subkey: "SOFTWARE\LEGO Media\LEGOLAND"; ValueType: none; Flags: uninsdeletekey
+Root: "HKLM"; Subkey: "SOFTWARE\LEGO Media\LEGOLAND\1.00"; ValueType: none; Flags: uninsdeletekey
+Root: "HKLM"; Subkey: "SOFTWARE\LEGO Media\LEGOLAND\1.00"; ValueType: String; ValueName: "Path"; ValueData: "{app}"; Flags: uninsdeletevalue
+Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\LEGOLAND.exe"; ValueType: String; ValueName: "(Default)"; ValueData: "{app}\LEGOLAND.EXE"; Flags: uninsdeletekey
+Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\LEGOLAND.exe"; ValueType: String; ValueName: "Path"; ValueData: "{app}"; Flags: uninsdeletevalue
+Root: "HKLM"; Subkey: "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\App Paths\LEGOLAND.exe"; ValueType: String; ValueName: "(Default)"; ValueData: "{app}\LEGOLAND.EXE"; Flags: uninsdeletekey
+Root: "HKLM"; Subkey: "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\App Paths\LEGOLAND.exe"; ValueType: String; ValueName: "Path"; ValueData: "{app}"; Flags: uninsdeletevalue
 
 [Run]
 ; From to to bottom: Extract the CAB, run game
