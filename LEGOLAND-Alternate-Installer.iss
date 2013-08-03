@@ -45,7 +45,7 @@ UninstallDisplayIcon={app}\Icon.ico
 CreateUninstallRegKey=yes
 UninstallDisplayName={#MyAppName}
 ; This is required so Inno can correctly report the installation size.
-UninstallDisplaySize=112820029
+UninstallDisplaySize=232783872
 ; Compression
 Compression=lzma2/ultra64
 SolidCompression=True
@@ -102,6 +102,8 @@ Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i3comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
+; Delete Uninst.dll from main.z
+Source: "Tools\DLLDel.bat"; DestDir: "{app}"; Flags: deleteafterinstall
 
 [Icons]
 ; Desktop and Start menu/screen icons
@@ -118,23 +120,20 @@ Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupD
 ; Registry strings are always hard-coded (!No ISPP functions!) 
 ; to ensure everything works properly.
 ; Run as Admin string
-Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\LEGORacers.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
+Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\legoland.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
 
 ; Required game strings
 Root: "HKLM"; Subkey: "SOFTWARE\LEGO Media\LEGOLAND"; ValueType: none; Flags: uninsdeletekey
 Root: "HKLM"; Subkey: "SOFTWARE\LEGO Media\LEGOLAND\1.00"; ValueType: none; Flags: uninsdeletekey
 Root: "HKLM"; Subkey: "SOFTWARE\LEGO Media\LEGOLAND\1.00"; ValueType: String; ValueName: "Path"; ValueData: "{app}"; Flags: uninsdeletevalue
-Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\LEGOLAND.exe"; ValueType: String; ValueName: "(Default)"; ValueData: "{app}\LEGOLAND.EXE"; Flags: uninsdeletekey
+Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\LEGOLAND.exe"; ValueType: String; ValueName: ; ValueData: "{app}\LEGOLAND.EXE"; Flags: uninsdeletekey
 Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\LEGOLAND.exe"; ValueType: String; ValueName: "Path"; ValueData: "{app}"; Flags: uninsdeletevalue
 
 [Run]
-; From to to bottom: Extract the CAB, run game
+; From to to bottom: extract the CAB, delete unused DLL, run game
 Filename: "{app}\i3comp.exe"; Parameters: """{app}\main.z"" ""{app}\*.*"" -d -i"; Flags: runascurrentuser
+Filename: "{app}\DLLDel.bat"; Flags: runascurrentuser
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
-
-[InstallDelete]
-; Uneeded file from main.z
-Type: files; Name: "Uninst.dll"
 
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files], 
@@ -156,8 +155,6 @@ Type: filesandordirs; Name: "{app}\zbuffers"
 ; Created to ensure the save games are not removed 
 ; (which should never ever happen).
 Name: "{app}\profiles"; Flags: uninsneveruninstall
-
-
 
 [Code]
 // Pascal script from Bgbennyboy to pull files off a CD, 
