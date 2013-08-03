@@ -96,7 +96,7 @@ Source: "{code:GetSourceDrive}Speech\*"; DestDir: "{app}\Speech"; Flags: externa
 ;; Source: "{code:GetSourceDrive}Lego Racers\setupdir\0009\ReadMe.txt"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
 
 ; Manual, icon and readme
-;; Source: "{code:GetSourceDrive}Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "LL_Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
 Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 
