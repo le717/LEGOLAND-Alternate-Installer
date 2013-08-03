@@ -30,7 +30,7 @@ DefaultDirName={pf}\LEGO Media\Games\LEGOLAND
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 ; Installer Graphics
-; SetupIconFile=Racers.ico
+SetupIconFile=Icon.ico
 WizardImageFile=Sidebar Image.bmp
 WizardSmallImageFile=InnoSetup LEGO Logo.bmp
 WizardImageStretch=True
@@ -40,7 +40,7 @@ OutputDir=Here Lie The Exe
 OutputBaseFilename=LEGO LEGOLAND Alternate Installer {#MyInstallerVersion}
 ; Uninstallation stuff
 UninstallFilesDir={app}
-UninstallDisplayIcon={app}\Racers.ico
+UninstallDisplayIcon={app}\Icon.ico
 CreateUninstallRegKey=yes
 UninstallDisplayName={#MyAppName}
 ; This is required so Inno can correctly report the installation size.
@@ -88,7 +88,7 @@ Source: "{code:GetSourceDrive}Lego Racers\setupdir\0009\ReadMe.txt"; DestDir: "{
 
 ; Manual and icon
 ; Source: "Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
-; Source: "Racers.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i3comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
