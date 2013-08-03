@@ -18,8 +18,8 @@ var
 const
 // Standard LEGO Racers disc
 	UniqueFile_1 = 'main.z';
-// Boys Only Club release
-	UniqueFile_2 = 'Lego Racers\Racers.ico';
+// Alternate release
+// 	UniqueFile_2 = 'Some folder\main.z';
 
 
 	DRIVE_UNKNOWN = 0; // The drive type cannot be determined.
@@ -98,14 +98,14 @@ begin
 			result:=DrvLetters[i];
 			exit;
 		end
-		else
-    // A Boys Only Club disc was detected
-    if FileExists( DrvLetters[i] + UniqueFile_2) then
-		begin
-			result:=DrvLetters[i];
-			exit;
-		end
-    else
+// 		else
+    // An alternate release disc was detected
+//     if FileExists( DrvLetters[i] + UniqueFile_2) then
+// 		begin
+// 			result:=DrvLetters[i];
+// 			exit;
+// 		end
+//     else
 
 	end;
 
