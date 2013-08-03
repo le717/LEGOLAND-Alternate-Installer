@@ -10,4 +10,4 @@ to pull the files off the disc, modified by Triangle717 to support ANSI and Unic
 This projetct also uses the *InstallShield v3.x Compression and Maintenance util* (`i3comp.exe`) to extract
 the InstallShield CAB archive. It was taken from [*Universal Extractor*](legroom.net/software/uniextract) by [LegRoom.net](http://legroom.net).
 
-Created 2013 [Triangle717](http://Triangle717.WordPress.com)
+Created 2013 [Triangle717](http://Triangle717.WordPress.com). PDF Manual provided by [Lair of Rockwhales](https://www.youtube.com/user/TheLairOfRockwhales).
