@@ -25,7 +25,7 @@ AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyInstallerVersion}
 AppPublisher={#MyAppPublisher}
 AppCopyright=© 1999 {#MyAppPublisher}
-LicenseFile=license.txt
+LicenseFile=Info\license.txt
 ; Start menu/screen and Desktop shortcuts
 DefaultDirName={pf}\LEGO Media\Games\LEGOLAND
 DefaultGroupName=LEGO Media\{#MyAppNameNoR}
@@ -67,15 +67,15 @@ WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended th
 ; DiskSpaceMBLabel is overridden because it reports an incorrect installation size.
 DiskSpaceMBLabel=At least 222 MB of free disk space is required.
 
-; Both Types and Components sections are required to create the installation options.
-; TODO: If I want to remake the original installation options, then I'll have to make another release
-; [Types]
-; Name: "Full"; Description: "Full Installation (With Movies)"  
-; Name: "Minimal"; Description: "Minimal Installation (Without Movies)"
+;; Both Types and Components sections are required to create the installation options.
+;; TODO: If I want to remake the original installation options, then I'll have to make another release
+;; [Types]
+;; Name: "Full"; Description: "Full Installation (With Movies)"  
+;; Name: "Minimal"; Description: "Minimal Installation (Without Movies)"
 
-; [Components]
-; Name: "Full"; Description: "Full Installation (With Movies)"; Types: Full
-; Name: "Minimal"; Description: "Minimal Installation (Without Movies)"; Types: Minimal
+;; [Components]
+;; Name: "Full"; Description: "Full Installation (With Movies)"; Types: Full
+;; Name: "Minimal"; Description: "Minimal Installation (Without Movies)"; Types: Minimal
 
 [Files]
 ; Pull the game files off a standard LEGOLAND disc.          
@@ -96,9 +96,9 @@ Source: "{code:GetSourceDrive}Speech\*"; DestDir: "{app}\Speech"; Flags: externa
 ;; Source: "{code:GetSourceDrive}Lego Racers\setupdir\0009\ReadMe.txt"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
 
 ; Manual, icon and readme
-Source: "LL_Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
-Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Info\LL_Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "Info\license.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion  
 
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i3comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
