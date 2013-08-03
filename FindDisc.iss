@@ -17,7 +17,7 @@ var
 
 const
 // Standard LEGO Racers disc
-	UniqueFile_1 = 'RACERS.ICO';
+	UniqueFile_1 = 'main.z';
 // Boys Only Club release
 	UniqueFile_2 = 'Lego Racers\Racers.ico';
 
@@ -130,7 +130,7 @@ begin
 	begin
 		while FindUniqueFile() = '' do
 		begin
-			if MsgBox('Is there a LEGO LEGOLAND CD in your computer? If not, please insert it and press OK.', mbConfirmation, MB_OKCANCEL or MB_DEFBUTTON1) = IDOK then
+			if MsgBox('Is there a LEGO® LEGOLAND CD in your computer? If not, please insert it and press OK.', mbConfirmation, MB_OKCANCEL or MB_DEFBUTTON1) = IDOK then
 
 			else
 				Abort;

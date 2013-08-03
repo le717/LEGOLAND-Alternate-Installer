@@ -1,4 +1,4 @@
-;  LEGO® LEGOLAND Alternate Installer V1.0
+﻿;  LEGO® LEGOLAND Alternate Installer V1.0
 ;  Created 2013 Triangle717
 ;  <http://Triangle717.WordPress.com/>
 ;  Contains source code from Grim Fandango Setup
@@ -67,6 +67,7 @@ WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended th
 DiskSpaceMBLabel=At least 107 MB of free disk space is required.
 
 ; Both Types and Components sections are required to create the installation options.
+; TODO: If I want to remake the original installation options, then I'll have to make another release
 [Types]
 Name: "Full"; Description: "Full Installation (With Movies)"  
 Name: "Minimal"; Description: "Minimal Installation (Without Movies)"
@@ -76,10 +77,9 @@ Name: "Full"; Description: "Full Installation (With Movies)"; Types: Full
 Name: "Minimal"; Description: "Minimal Installation (Without Movies)"; Types: Minimal
 
 [Files]
-; Pull the game files off a standard LEGO Racers disc.
-Source: "{code:GetSourceDrive}DATA1.CAB"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}DATA1.HDR"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}SETUPDIR\0009\Readme.txt"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
+; Pull the game files off a standard LEGOLAND disc.
+Source: "{code:GetSourceDrive}main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
 
 ; Pull the game files off a Boys Only Club disc.
 Source: "{code:GetSourceDrive}Lego Racers\data1.cab"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
@@ -105,7 +105,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Registry]
-; Registry strings are always hard-coded (No ISPP functions) to ensure everything works properly.
+; Registry strings are always hard-coded (!No ISPP functions!) to ensure everything works properly.
 Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\LEGORacers.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
 
 [Run]
@@ -120,11 +120,18 @@ Type: files; Name: "main.z"
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files], this is needed to delete them.
 Type: files; Name: "{app}\{#MyAppExeName}"
-Type: files; Name: "{app}\*.tun"
-Type: files; Name: "{app}\GolDP.dll"
-Type: files; Name: "{app}\LEGO.JAM"
+Type: files; Name: "{app}\EGC.BMP"
+Type: files; Name: "{app}\DeIsL1.isu"
+Type: files; Name: "{app}\Lego.TTF"
+Type: files; Name: "{app}\Legoland.icm"
 Type: files; Name: "{app}\*.avi"
-; Type: filesandordirs; Name: "{app}\Uninstall"
+Type: filesandordirs; Name: "{app}\IMusic"
+Type: filesandordirs; Name: "{app}\RollerCoaster"
+Type: filesandordirs; Name: "{app}\Speech"
+Type: filesandordirs; Name: "{app}\strings"
+Type: filesandordirs; Name: "{app}\Volumes"
+Type: filesandordirs; Name: "{app}\zbuffers"
+; FIXME: Make sure the save games are kept
 
 [Dirs]
 ; Created to ensure the save games are not removed (which should never ever happen).
@@ -135,7 +142,7 @@ Name: "{app}\Save"; Flags: uninsneveruninstall
 [Code]
 // Pascal script from Bgbennyboy to pull files off a CD, greatly trimmed up and modified to support ANSI and Unicode Inno Setup by Triangle717.
 var
-  SourceDrive: string;
+	SourceDrive: string;
 
 #include "FindDisc.iss"
 
