@@ -65,7 +65,7 @@ BeveledLabel={#MyInstallerName} {#MyInstallerVersion}
 ; WelcomeLabel2 is overridden because I'm unsure if every LEGO LEGOLAND disc says version 0.2.2.9 or just mine.
 WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended that you close all other applications before continuing.
 ; DiskSpaceMBLabel is overridden because it reports an incorrect installation size.
-DiskSpaceMBLabel=At least 107 MB of free disk space is required.
+DiskSpaceMBLabel=At least 222 MB of free disk space is required.
 
 ; Both Types and Components sections are required to create the installation options.
 ; TODO: If I want to remake the original installation options, then I'll have to make another release
