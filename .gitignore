@@ -217,3 +217,5 @@ pip-log.txt
 main.z
 *.~is
 Here Lie the Exe/
+*.svg
+*.png

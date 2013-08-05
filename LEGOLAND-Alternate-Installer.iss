@@ -32,7 +32,7 @@ DefaultGroupName=LEGO Media\{#MyAppNameNoR}
 AllowNoIcons=yes
 ; Installer Graphics
 SetupIconFile=Icon.ico
-WizardImageFile=Sidebar Image.bmp
+WizardImageFile=Sidebar.bmp
 WizardSmallImageFile=InnoSetup LEGO Logo.bmp
 WizardImageStretch=True
 WizardImageBackColor=clBlack
