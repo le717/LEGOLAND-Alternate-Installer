@@ -33,12 +33,12 @@ AllowNoIcons=yes
 ; Installer Graphics
 SetupIconFile=Icon.ico
 WizardImageFile=Sidebar.bmp
-WizardSmallImageFile=InnoSetup LEGO Logo.bmp
+WizardSmallImageFile=Small Image.bmp
 WizardImageStretch=True
 WizardImageBackColor=clBlack
 ; Location of the compiled Exe
 OutputDir=Here Lie The Exe
-OutputBaseFilename=LEGOLAND Alternate Installer {#MyInstallerVersion}
+OutputBaseFilename={#MyAppNameNoR} Alternate Installer {#MyInstallerVersion}
 ; Uninstallation stuff
 UninstallFilesDir={app}
 UninstallDisplayIcon={app}\Icon.ico
