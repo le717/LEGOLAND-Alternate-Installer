@@ -1,4 +1,4 @@
-LEGO:registered: LEGOLAND Alternate Installer
+ LEGO:registered: LEGOLAND Alternate Installer
 =============================================
 
 An alternate installer for _LEGO® LEGOLAND_, written using [Inno Setup](http://www.jrsoftware.org/isinfo.php) 
@@ -10,8 +10,7 @@ to pull the files off the disc, modified by Triangle717 to support ANSI and Unic
 This projetct also uses the *InstallShield v3.x Compression and Maintenance util* (`i3comp.exe`) to extract
 the InstallShield CAB archive. It was taken from [*Universal Extractor*](legroom.net/software/uniextract) by [LegRoom.net](http://legroom.net).
 
-Created 2013 [Triangle717](http://Triangle717.WordPress.com). PDF Manual provided by [Lair of Rockwhales](https://www.youtube.com/user/TheLairOfRockwhales).
-
 License
 -------
-***LEGO® LEGOLAND Alternate Installer*, created 2013 Triangle717, and released under the [GNU General Public License Version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).**
+***LEGO® LEGOLAND Alternate Installer*, created 2013 [Triangle717](http://Triangle717.WordPress.com).**
+**PDF Manual provided by [Lair of Rockwhales](https://www.youtube.com/user/TheLairOfRockwhales).**
