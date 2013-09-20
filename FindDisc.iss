@@ -16,11 +16,8 @@ var
 	external 'GetLogicalDriveStringsA@kernel32.dll stdcall';
 
 const
-// Standard LEGO Racers disc
+// Identifies a LEGOLAND disc
 	UniqueFile_1 = 'main.z';
-// Alternate release
-// 	UniqueFile_2 = 'Some folder\main.z';
-
 
 	DRIVE_UNKNOWN = 0; // The drive type cannot be determined.
 	DRIVE_NO_ROOT_DIR = 1; // The root path is invalid. For example, no volume is mounted at the path.
@@ -92,20 +89,12 @@ var
 begin
 	for i:=0 to GetArrayLength(DrvLetters) -1 do
 	begin
-    // A standard LEGO LEGOLAND disc was detected
+    // A LEGOLAND disc was detected
 		if FileExists( DrvLetters[i] + UniqueFile_1) then
 		begin
 			result:=DrvLetters[i];
 			exit;
 		end
-// 		else
-    // An alternate release disc was detected
-//     if FileExists( DrvLetters[i] + UniqueFile_2) then
-// 		begin
-// 			result:=DrvLetters[i];
-// 			exit;
-// 		end
-//     else
 
 	end;
 
