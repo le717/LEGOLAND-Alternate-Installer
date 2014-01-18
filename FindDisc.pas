@@ -1,5 +1,5 @@
-//  LEGO® LEGOLAND Alternate Installer V1.0
-//  Created 2013 Triangle717
+ï»¿//  LEGOÂ® LEGOLAND Alternate Installer 
+//  Created 2013-2014 Triangle717
 //  <http://Triangle717.WordPress.com/>
 //  Contains source code from Grim Fandango Setup
 //  Copyright (c) 2007-2008 Bgbennyboy
@@ -119,7 +119,7 @@ begin
 	begin
 		while FindUniqueFile() = '' do
 		begin
-			if MsgBox('Is there a LEGO® LEGOLAND CD in your computer? If not, please insert it and press OK.', mbConfirmation, MB_OKCANCEL or MB_DEFBUTTON1) = IDOK then
+			if MsgBox('Is there a LEGOÂ® LEGOLAND CD in your computer? If not, please insert it and press OK.', mbConfirmation, MB_OKCANCEL or MB_DEFBUTTON1) = IDOK then
 
 			else
 				Abort;
