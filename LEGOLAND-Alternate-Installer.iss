@@ -1,12 +1,12 @@
-﻿;  LEGO® LEGOLAND Alternate Installer V1.0
-;  Created 2013 Triangle717
+﻿;  LEGO® LEGOLAND Alternate Installer
+;  Created 2013-2014 Triangle717
 ;  <http://Triangle717.WordPress.com/>
 ;  Contains source code from Grim Fandango Setup
 ;  Copyright (c) 2007-2008 Bgbennyboy
 ;  <http://quick.mixnmojo.com/>
 
 ; If any version below the specified version is used for compiling, this error will be shown.
-#if VER < EncodeVer(5,5,2)
+#if VER < EncodeVer(5, 5, 2)
   #error You must use Inno Setup 5.5.2 or newer to compile this script
 #endif
 
@@ -33,11 +33,11 @@ AllowNoIcons=yes
 ; Installer Graphics
 SetupIconFile=Icon.ico
 WizardImageFile=Sidebar.bmp
-WizardSmallImageFile=Small Image.bmp
+WizardSmallImageFile=Small-Image.bmp
 WizardImageStretch=True
 WizardImageBackColor=clBlack
 ; Location of the compiled Exe
-OutputDir=Here Lie The Exe
+OutputDir=bin
 OutputBaseFilename={#MyAppNameNoR} Alternate Installer {#MyInstallerVersion}
 ; Uninstallation stuff
 UninstallFilesDir={app}
@@ -52,7 +52,7 @@ SolidCompression=True
 InternalCompressLevel=ultra
 LZMAUseSeparateProcess=yes
 ; From top to bottom:
-; Explicitly set Admin rights, no other languages, do not restart upon finishing.
+; Explicitly set Admin rights, no other languages, do not restart upon finish.
 PrivilegesRequired=admin
 ShowLanguageDialog=no
 RestartIfNeededByRun=no
@@ -62,7 +62,8 @@ Name: "English"; MessagesFile: "compiler:Default.isl"
 
 [Messages]
 BeveledLabel={#MyInstallerName} {#MyInstallerVersion}
-; WelcomeLabel2 is overridden because I'm unsure if every LEGO LEGOLAND disc says version 0.2.2.9 or just mine.
+; WelcomeLabel2 is overridden because I'm unsure if every LEGO LEGOLAND disc 
+; says version 0.2.2.9 or just mine.
 WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended that you close all other applications before continuing.
 ; DiskSpaceMBLabel is overridden because it reports an incorrect installation size.
 DiskSpaceMBLabel=At least 222 MB of free disk space is required.
@@ -78,11 +79,10 @@ DiskSpaceMBLabel=At least 222 MB of free disk space is required.
 ;; Name: "Minimal"; Description: "Minimal Installation (Without Movies)"; Types: Minimal
 
 [Files]
-; Pull the game files off a standard LEGOLAND disc.          
-; The deleteafterinstall flag removes the archive once the installation is complete
+; Grab main.z       
 Source: "{code:GetSourceDrive}main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
 
-; The Resource archives
+; Resource archives
 Source: "{code:GetSourceDrive}Graphics1.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
 Source: "{code:GetSourceDrive}Graphics2.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
 Source: "{code:GetSourceDrive}Legoland.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
@@ -97,7 +97,7 @@ Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i3comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
-; Delete Uninst.dll from main.z
+; Delete Uninst.dll from extracted main.z
 Source: "Tools\DLLDel.bat"; DestDir: "{app}"; Flags: deleteafterinstall
 
 [Icons]
@@ -112,8 +112,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Registry]
-; Registry strings are always hard-coded (!No ISPP functions!) to ensure everything works properly.
-; Run with Administrator rights string
+; Registry strings are always hard-coded (!No ISPP functions!) 
+; to ensure everything works properly.
+; Run as Administrator string
 Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\legoland.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
 
 ; Required game strings
@@ -157,7 +158,7 @@ Name: "{app}\profiles"; Flags: uninsneveruninstall
 var
 	SourceDrive: string;
 
-#include "FindDisc.iss"
+#include "FindDisc.pas"
 
 function GetSourceDrive(Param: String): String;
 begin
