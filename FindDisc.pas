@@ -18,6 +18,8 @@ var
 const
 // Identifies a LEGOLAND disc
 	UniqueFile_1 = 'main.z';
+	// Alternate release
+        UniqueFile_2 = 'TODO\main.z';
 
 	DRIVE_UNKNOWN = 0; // The drive type cannot be determined.
 	DRIVE_NO_ROOT_DIR = 1; // The root path is invalid. For example, no volume is mounted at the path.
@@ -95,6 +97,14 @@ begin
 			result:=DrvLetters[i];
 			exit;
 		end
+		else
+ // An alternate release disc was detected
+ if FileExists( DrvLetters[i] + UniqueFile_2) then
+ begin
+ result:=DrvLetters[i];
+ exit;
+ end
+ else
 
 	end;
 
