@@ -62,7 +62,7 @@ Name: "English"; MessagesFile: "compiler:Default.isl"
 
 [Messages]
 BeveledLabel={#MyInstallerName} {#MyInstallerVersion}
-; WelcomeLabel2 is overridden because I'm unsure if every LEGO LEGOLAND disc 
+; WelcomeLabel2 is overridden because I'm unsure if every LEGO LEGOLAND disc
 ; says version 0.2.2.9 or just mine.
 WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended that you close all other applications before continuing.
 ; DiskSpaceMBLabel is overridden because it reports an incorrect installation size.
@@ -71,7 +71,7 @@ DiskSpaceMBLabel=At least 222 MB of free disk space is required.
 ;; Both Types and Components sections are required to create the installation options.
 ;; TODO: If I want to remake the original installation options, then I'll have to make another release
 ;; [Types]
-;; Name: "Full"; Description: "Full Installation (With Movies)"  
+;; Name: "Full"; Description: "Full Installation (With Movies)"
 ;; Name: "Minimal"; Description: "Minimal Installation (Without Movies)"
 
 ;; [Components]
@@ -79,7 +79,7 @@ DiskSpaceMBLabel=At least 222 MB of free disk space is required.
 ;; Name: "Minimal"; Description: "Minimal Installation (Without Movies)"; Types: Minimal
 
 [Files]
-; Grab main.z       
+; Grab main.z
 Source: "{code:GetSourceDrive}main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
 
 ; Resource archives
@@ -90,10 +90,17 @@ Source: "{code:GetSourceDrive}Legoland.res"; DestDir: "{app}\Volumes"; Flags: ex
 ; Uncompressed files
 Source: "{code:GetSourceDrive}Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion
 
+; Funclub alternate release
+Source: "{code:GetSourceDrive}TODO\main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}TODO\Graphics1.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}TODO\Graphics2.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}TODO\Legoland.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}TODO\Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion
+
 ; Manual, icon and readme
 Source: "Info\LL_Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
 Source: "Info\license.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion  
+Source: "Icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i3comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
@@ -112,7 +119,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Registry]
-; Registry strings are always hard-coded (!No ISPP functions!) 
+; Registry strings are always hard-coded (!No ISPP functions!)
 ; to ensure everything works properly.
 ; Run as Administrator string
 Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\legoland.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
@@ -131,7 +138,7 @@ Filename: "{app}\DLLDel.bat"; Flags: runascurrentuser
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
 
 [UninstallDelete]
-; Because the files came from a CAB were not installed from [Files], 
+; Because the files came from a CAB were not installed from [Files],
 ; this is needed to delete them.
 Type: files; Name: "{app}\{#MyAppExeName}"
 Type: files; Name: "{app}\EGC.BMP"
@@ -147,25 +154,25 @@ Type: filesandordirs; Name: "{app}\Volumes"
 Type: filesandordirs; Name: "{app}\zbuffers"
 
 [Dirs]
-; Created to ensure the save games are not removed 
+; Created to ensure the save games are not removed
 ; (which should never ever happen).
 Name: "{app}\profiles"; Flags: uninsneveruninstall
 
 [Code]
-// Pascal script from Bgbennyboy to pull files off a CD, 
+// Pascal script from Bgbennyboy to pull files off a CD,
 // greatly trimmed up and modified to support ANSI and Unicode Inno Setup
 // by Triangle717.
 var
-	SourceDrive: string;
+  SourceDrive: string;
 
 #include "FindDisc.pas"
 
 function GetSourceDrive(Param: String): String;
 begin
-	Result:=SourceDrive;
+  Result:=SourceDrive;
 end;
 
 procedure InitializeWizard();
 begin
-	SourceDrive:=GetSourceCdDrive();
+  SourceDrive:=GetSourceCdDrive();
 end;
