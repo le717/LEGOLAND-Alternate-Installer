@@ -10,25 +10,25 @@
   #error You must use Inno Setup 5.5.2 or newer to compile this script
 #endif
 
-#define MyInstallerName "LEGO® LEGOLAND Alternate Installer"
-#define MyInstallerVersion "1.0"
-#define MyAppName "LEGO® LEGOLAND"
-#define MyAppNameNoR "LEGO LEGOLAND"
-#define MyAppVersion "0.2.2.9"
-#define MyAppPublisher "LEGO Media"
-#define MyAppExeName "legoland.exe"
+#define InstallerName "LEGO® LEGOLAND Alternate Installer"
+#define InstallerVersion "1.0.1"
+#define AppName "LEGO® LEGOLAND"
+#define AppNameNoR "LEGO LEGOLAND"
+#define AppVersion "0.2.2.9"
+#define AppPublisher "LEGO Media"
+#define AppExeName "legoland.exe"
 
 [Setup]
-AppID={#MyInstallerName}{#MyInstallerVersion}
-AppName={#MyAppName}
-AppVersion={#MyAppVersion}
-VersionInfoVersion={#MyInstallerVersion}
-AppPublisher={#MyAppPublisher}
-AppCopyright=© 1999 {#MyAppPublisher}
+AppID={#InstallerName}{#InstallerVersion}
+AppName={#AppName}
+AppVersion={#AppVersion}
+VersionInfoVersion={#InstallerVersion}
+AppPublisher={#AppPublisher}
+AppCopyright=(C) 1999 {#AppPublisher}
 LicenseFile=Info\license.txt
 ; Start menu/screen and Desktop shortcuts
 DefaultDirName={pf}\LEGO Media\Games\LEGOLAND
-DefaultGroupName=LEGO Media\{#MyAppNameNoR}
+DefaultGroupName=LEGO Media\{#AppNameNoR}
 AllowNoIcons=yes
 ; Installer Graphics
 SetupIconFile=Icon.ico
@@ -38,12 +38,12 @@ WizardImageStretch=True
 WizardImageBackColor=clBlack
 ; Location of the compiled Exe
 OutputDir=bin
-OutputBaseFilename={#MyAppNameNoR} Alternate Installer {#MyInstallerVersion}
+OutputBaseFilename={#AppNameNoR} Alternate Installer {#InstallerVersion}
 ; Uninstallation stuff
 UninstallFilesDir={app}
 UninstallDisplayIcon={app}\Icon.ico
 CreateUninstallRegKey=yes
-UninstallDisplayName={#MyAppName}
+UninstallDisplayName={#AppName}
 ; This is required so Inno can correctly report the installation size.
 UninstallDisplaySize=232783872
 ; Compression
@@ -61,7 +61,7 @@ RestartIfNeededByRun=no
 Name: "English"; MessagesFile: "compiler:Default.isl"
 
 [Messages]
-BeveledLabel={#MyInstallerName} {#MyInstallerVersion}
+BeveledLabel={#InstallerName} {#InstallerVersion}
 ; WelcomeLabel2 is overridden because I'm unsure if every LEGO LEGOLAND disc
 ; says version 0.2.2.9 or just mine.
 WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended that you close all other applications before continuing.
@@ -83,19 +83,19 @@ DiskSpaceMBLabel=At least 222 MB of free disk space is required.
 Source: "{code:GetSourceDrive}main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
 
 ; Resource archives
-Source: "{code:GetSourceDrive}Graphics1.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}Graphics2.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}Legoland.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}Graphics1.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}Graphics2.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}Legoland.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion skipifsourcedoesntexist
 
 ; Uncompressed files
-Source: "{code:GetSourceDrive}Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion skipifsourcedoesntexist
 
 ; Funclub alternate release
 Source: "{code:GetSourceDrive}TODO\main.z"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}TODO\Graphics1.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}TODO\Graphics2.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}TODO\Legoland.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion
-Source: "{code:GetSourceDrive}TODO\Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}TODO\Graphics1.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}TODO\Graphics2.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}TODO\Legoland.res"; DestDir: "{app}\Volumes"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}TODO\Speech\*"; DestDir: "{app}\Speech"; Flags: external ignoreversion skipifsourcedoesntexist
 
 ; Manual, icon and readme
 Source: "Info\LL_Manual.pdf"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
@@ -109,14 +109,14 @@ Source: "Tools\DLLDel.bat"; DestDir: "{app}"; Flags: deleteafterinstall
 
 [Icons]
 ; Desktop and Start menu/screen icons
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\Icon.ico"; Comment: "Play LEGOLAND"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\Icon.ico"; Comment: "Uninstall LEGOLAND"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\Icon.ico"; Comment: "Play LEGOLAND"; Tasks: desktopicon
+Name: "{group}\{#AppName}"; Filename: "{app}\{#AppExeName}"; IconFilename: "{app}\Icon.ico"; Comment: "Play LEGOLAND"
+Name: "{group}\{cm:UninstallProgram,{#AppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\Icon.ico"; Comment: "Uninstall LEGOLAND"
+Name: "{commondesktop}\{#AppName}"; Filename: "{app}\{#AppExeName}"; IconFilename: "{app}\Icon.ico"; Comment: "Play LEGOLAND"; Tasks: desktopicon
 
 [Tasks]
 ; Create Desktop icon, Run As Admin registry string
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"
+Name: "Admin"; Description: "Run {#AppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Registry]
 ; Registry strings are always hard-coded (!No ISPP functions!)
@@ -135,12 +135,12 @@ Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\LEGOL
 ; From to to bottom: extract the CAB, delete unused DLL, run game
 Filename: "{app}\i3comp.exe"; Parameters: """{app}\main.z"" ""{app}\*.*"" -d -i"; Flags: runascurrentuser
 Filename: "{app}\DLLDel.bat"; Flags: runascurrentuser
-Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
+Filename: "{app}\{#AppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"
 
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files],
 ; this is needed to delete them.
-Type: files; Name: "{app}\{#MyAppExeName}"
+Type: files; Name: "{app}\{#AppExeName}"
 Type: files; Name: "{app}\EGC.BMP"
 Type: files; Name: "{app}\DeIsL1.isu"
 Type: files; Name: "{app}\Lego.TTF"
